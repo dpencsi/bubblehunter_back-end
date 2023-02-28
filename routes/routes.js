@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const Score = require('../models/model');
 const router = express.Router();
 
@@ -16,6 +17,9 @@ router.post('/scores/save', async (req, res) => {
     catch(error){
         res.status(400).json({message: error.message});
     }
+    finally{
+        mongoose.connection.close();
+    }
 });
 
 //Get all Method
@@ -26,6 +30,9 @@ router.get('/scores/list', async (req, res) => {
     }
     catch(error){
         res.status(500).json({message: error.message});
+    }
+    finally{
+        mongoose.connection.close();
     }
 });
 
