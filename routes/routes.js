@@ -1,10 +1,10 @@
 const express = require('express');
-const Model = require('../models/model');
+const Score = require('../models/model');
 const router = express.Router();
 
 //Post Method
 router.post('/scores/save', async (req, res) => {
-    const data = new Model({
+    const data = new Score({
         name: req.body.name,
         score: req.body.score
     });
@@ -21,7 +21,7 @@ router.post('/scores/save', async (req, res) => {
 //Get all Method
 router.get('/scores/list', async (req, res) => {
     try{
-        const data = await Model.find();
+        const data = await Score.find();
         res.json(data);
     }
     catch(error){
